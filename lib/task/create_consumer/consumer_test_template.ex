@@ -20,12 +20,12 @@ defmodule Mix.Tasks.ConsumerTestTemplate do
 
     assert_results =
       Enum.reduce(event_data_keys, "", fn key, acc ->
-        acc <> "assert #{key} == \"#{event["data"][key]}\" \n"
+        acc <> "assert #{key} == #{inspect(event["data"][key])} \n"
       end)
 
     """
     defmodule #{module_name}.#{sub_module_name}EventConsumerTest do
-      use Support.DataCase, async: false
+      use Support.ProcessCase, async: false, process: #{sub_module_name}EventConsumer
 
       alias #{module_name}.#{sub_module_name}EventConsumer
 
@@ -59,7 +59,7 @@ defmodule Mix.Tasks.ConsumerTestTemplate do
         end
 
         assert :ok =
-                 #{sub_module_name}.handle_message(
+                 #{sub_module_name}EventConsumer.handle_message(
                    @event,
                    application_service
                  )
@@ -70,16 +70,10 @@ defmodule Mix.Tasks.ConsumerTestTemplate do
       test "uses the tackle retry functionality if not successful" do
         assert {:retry, {:error, _your_error}} =
                  catch_throw(
-                   #{sub_module_name}.handle_message(
+                   #{sub_module_name}EventConsumer.handle_message(
                      @event
                    )
                  )
-      end
-
-      @tag :integration
-      test "start consumer test" do
-        assert consumer_pid = Process.whereis(#{sub_module_name})
-        assert Process.alive?(consumer_pid)
       end
     end
 

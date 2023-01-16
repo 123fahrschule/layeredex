@@ -6,7 +6,7 @@ defmodule Mix.Tasks.CreateFiles do
   import Mix.TasksHelper.CreateDomainModelRepository
   import Mix.TasksHelper.CreateEventListener
   import Mix.TasksHelper.CreateEventPublisher
-
+  import Mix.TasksHelper.CreateFactory
   # --a  application service module name
   # --e  internal event module name
   # --m  domain model module name
@@ -77,6 +77,7 @@ defmodule Mix.Tasks.CreateFiles do
       create_domain_model_test(params)
       create_domain_model_repository(params)
       create_domain_model_repository_test(params)
+      create_factory(params)
     end
 
     if Map.get(params, "--a") && Map.get(params, "--e") && Map.get(params, "--l") == "y" do
