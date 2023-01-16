@@ -23,6 +23,7 @@ defmodule Mix.TasksHelper.CreateApplicationService do
   def create_application_service_test(%{"--a" => application_service_name} = params) do
     domain_model_name = Map.get(params, "--m") || "DomainModelName"
     event_name = Map.get(params, "--e") || "EventName"
+    application_service_filename = Macro.underscore(application_service_name)
 
     content =
       Mix.TasksHelper.ApplicationServiceTestTemplate.template(
@@ -35,7 +36,7 @@ defmodule Mix.TasksHelper.CreateApplicationService do
     File.write(
       application_service_path(
         application_service_name,
-        "#{application_service_name}_application_service_test",
+        "#{application_service_filename}_application_service_test",
         "exs"
       ),
       content
