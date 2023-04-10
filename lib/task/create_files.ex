@@ -7,6 +7,7 @@ defmodule Mix.Tasks.CreateFiles do
   import Mix.TasksHelper.CreateEventListener
   import Mix.TasksHelper.CreateEventPublisher
   import Mix.TasksHelper.CreateFactory
+  import Mix.TasksHelper.CreateMigration
   # --a  application service module name
   # --e  internal event module name
   # --m  domain model module name
@@ -90,8 +91,8 @@ defmodule Mix.Tasks.CreateFiles do
       create_external_event_publisher_test(params)
     end
 
-    if migration_name = Map.get(params, "--migration") do
-      System.cmd("mix", ["ecto.gen.migration", migration_name])
+    if Map.get(params, "--migration") do
+      create_migration(params)
     end
 
     System.cmd("mix", ["format"])
