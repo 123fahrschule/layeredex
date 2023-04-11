@@ -29,6 +29,7 @@ defmodule Mix.TasksHelper.FactoryTemplate do
       def fake_#{domain_model_variable_name}(opts \\\\ []) do
         #{keywords_get}
 
+        #{domain_model_variable_name} = #{domain_model_name}.new()
         case Keyword.get(opts, :persisted) do
           true ->
             {:ok, #{domain_model_variable_name}} =

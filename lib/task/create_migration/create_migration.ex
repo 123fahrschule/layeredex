@@ -16,14 +16,13 @@ defmodule Mix.TasksHelper.CreateMigration do
         end
 
       IO.puts("Add to migration file ->")
+      IO.puts("create table(________, primary_key: false) do")
       IO.puts("add :id, :string, primary_key: true")
       IO.puts(fields)
       IO.puts("add :lock_version, :integer, default: 1")
       IO.puts("timestamps()")
+      IO.puts("end")
 
-      IO.puts("\n")
-      IO.puts("Add primary_key: false to create table statement")
-      IO.puts("create table(_____, primary_key: false) do")
     end
   end
 end
