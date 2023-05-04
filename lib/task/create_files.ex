@@ -73,7 +73,7 @@ defmodule Mix.Tasks.CreateFiles do
       create_event_test(params)
     end
 
-    if Map.get(params, "--a") && Map.get(params, "--m") do
+    if Map.get(params, "--m") do
       create_domain_model(params)
       create_domain_model_test(params)
       create_domain_model_repository(params)
