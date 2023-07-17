@@ -36,7 +36,7 @@ defmodule Mix.TasksHelper.ApplicationServiceTemplate do
       end
 
       defp persist_#{domain_model_variable_name}(multi, #{domain_model_variable_name}) do
-        Multi.run(multi, :persist_new_#{domain_model_variable_name}, fn _, _ ->
+        Multi.run(multi, :persist_#{domain_model_variable_name}, fn _, _ ->
           #{domain_model_name}Repository.save(#{domain_model_variable_name})
         end)
       end
