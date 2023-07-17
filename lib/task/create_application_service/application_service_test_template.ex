@@ -27,7 +27,7 @@ defmodule Mix.TasksHelper.ApplicationServiceTestTemplate do
                    metadata: [enacted_by: "enacted_by"]
                  )
 
-        assert {:ok, #{domain_model_variable_name}} = #{domain_model_name}Repository.bu_id(id)
+        assert {:ok, #{domain_model_variable_name}} = #{domain_model_name}Repository.by_id(id)
         assert #{domain_model_variable_name}.id == id
 
         assert [{%#{event_name}{} = event, metadata}] = all_events()
