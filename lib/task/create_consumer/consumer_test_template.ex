@@ -25,7 +25,7 @@ defmodule Mix.Tasks.ConsumerTestTemplate do
 
     """
     defmodule #{module_name}.#{sub_module_name}EventConsumerTest do
-      use Support.ProcessCase, async: false, process: #{sub_module_name}EventConsumer
+      use Support.ProcessCase, async: false, process: #{module_name}.#{sub_module_name}EventConsumer
 
       alias #{module_name}.#{sub_module_name}EventConsumer
 
