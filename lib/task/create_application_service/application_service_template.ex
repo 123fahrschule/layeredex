@@ -42,7 +42,7 @@ defmodule Mix.TasksHelper.ApplicationServiceTemplate do
       end
 
       defp persist_event(multi, event, metadata) do
-        Multi.run(multi, :persist_#{domain_model_variable_name}_event, fn _, _ ->
+        Multi.run(multi, :persist_event, fn _, _ ->
           append_event(event, event_metadata("#{application_service_event_name}", metadata))
         end)
       end
