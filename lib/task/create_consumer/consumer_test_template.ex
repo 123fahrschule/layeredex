@@ -49,7 +49,7 @@ defmodule Mix.Tasks.ConsumerTestTemplate do
           assert metadata.causation_id == "#{event["type"]}:#{event["id"]}"
 
           assert metadata.original_causation_id ==
-                    "#{event["correlation_id"]}"
+                    "#{event["causation_id"]}"
 
           assert metadata.occurred_at ==
                    Shared.DateTime.parse("#{event["time"]}") |> success_value()
