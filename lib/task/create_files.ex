@@ -64,9 +64,7 @@ defmodule Mix.Tasks.CreateFiles do
 
   defp create_file(params) do
     if Map.get(params, "--a") do
-      IO.inspect("we are here 1")
       create_application_service(params)
-      IO.inspect("we are here 2")
       create_application_service_test(params)
     end
 
