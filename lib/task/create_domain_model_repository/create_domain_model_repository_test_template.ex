@@ -47,8 +47,8 @@ defmodule Mix.TasksHelper.CreateDomainModelRepositoryTestTemplate do
       test "by id" do
         #{domain_model_variable_name} = insert(:#{domain_model_variable_name})
 
-        assert {:ok, _#{domain_model_variable_name}} = #{prefix}.#{domain_model_name}Repository.by_id(#{domain_model_variable_name}.id)
-        assert {:error, :#{domain_model_variable_name}_not_found} = #{prefix}.#{domain_model_name}Repository.by_id(new_uuid())
+        assert {:ok, _#{domain_model_variable_name}} = #{domain_model_name}Repository.by_id(#{domain_model_variable_name}.id)
+        assert {:error, :#{domain_model_variable_name}_not_found} = #{domain_model_name}Repository.by_id(new_uuid())
       end
     end
 

@@ -35,7 +35,7 @@ defmodule Mix.TasksHelper.DomainModelTemplate do
 
       @primary_key {:id, :binary_id, autogenerate: false}
 
-      schema "#{domain_model_variable_name}" do
+      schema "#{domain_model_variable_name}s" do
         #{fields}
 
         field :lock_version, :integer, default: 1
