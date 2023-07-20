@@ -7,7 +7,7 @@ defmodule Mix.TasksHelper.CreateEventTestTemplate do
     domain_model = Macro.underscore(domain_model_name)
 
     """
-    defmodule #{prefix}.#{event_name} do
+    defmodule #{prefix}.#{event_name}Test do
       use Support.DataCase, async: true
       alias #{prefix}.#{event_name}
 
