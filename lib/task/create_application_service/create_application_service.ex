@@ -14,10 +14,14 @@ defmodule Mix.TasksHelper.CreateApplicationService do
         event_name: event_name
       )
 
+    IO.inspect("we in generator")
+
     File.write(
       application_service_path(application_service_name),
       content
     )
+
+    IO.inspect("O, generated!")
   end
 
   def create_application_service_test(%{"--a" => application_service_name} = params) do
