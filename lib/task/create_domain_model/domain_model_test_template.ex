@@ -32,9 +32,9 @@ defmodule Mix.TasksHelper.DomainModelTestTemplate do
 
     """
     defmodule #{prefix}.#{domain_model_name}Test do
-      alias #{prefix}.#{domain_model_name}
       use Support.DataCase, async: true
-      use #{prefix}.Includes, :factory
+
+      alias #{prefix}.#{domain_model_name}
 
       test "build" do
         #{setup}
