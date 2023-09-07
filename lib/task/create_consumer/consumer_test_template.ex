@@ -68,12 +68,25 @@ defmodule Mix.Tasks.ConsumerTestTemplate do
       end
 
       test "uses the tackle retry functionality if not successful" do
-        assert {:retry, {:error, _your_error}} =
+        application_service_handler_fn = fn _opts -> {:error, :any_error} end
+
+        assert {:retry, {:error, :any_error}} =
                  catch_throw(
                    #{sub_module_name}EventConsumer.handle_message(
-                     @event
+                     @event, application_service_handler_fn
                    )
                  )
+      end
+
+      @tag :integration
+      test "DOING SOMETHING" do
+        %{"data" => %{"some_param" => some_param}} = Jason.decode!(@event)
+        assert :ok = #{sub_module_name}EventConsumer.handle_message(@event)
+
+        assert {:ok, some_changed_structure} = SomeRepository.by_id(id)
+        assert some_changed_structure.some == some_param
+
+        assert [{%SomeEvent{}, _}] = all_events()
       end
     end
 
