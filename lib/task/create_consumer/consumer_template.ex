@@ -28,6 +28,7 @@ defmodule Mix.Tasks.ConsumerTemplate do
       |> String.split("|")
       |> Enum.reject(fn x -> x == "" end)
       |> Enum.map(fn x -> String.trim(x) end)
+      |> Enum.map(fn x -> String.trim(x, "`") end)
 
     sub_module_name =
       name |> String.split("_") |> Enum.map(fn x -> String.capitalize(x) end) |> Enum.join()
