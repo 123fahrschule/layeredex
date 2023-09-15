@@ -8,11 +8,11 @@ defmodule Mix.TasksHelper.CreateEventTemplate do
     defmodule #{prefix}.#{event_name} do
       use #{prefix}.Includes, :domain_event
 
+      alias #{prefix}.#{domain_model_name}
+
       @derive {Shared.AppendableEvent, stream_id: :student_id}
 
       defstruct [:student_id]
-
-      alias #{prefix}.#{domain_model_name}
 
       def for(%#{domain_model_name}{id: id}) do
         %@me{student_id: id}
