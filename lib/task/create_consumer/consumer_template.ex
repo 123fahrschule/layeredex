@@ -1,6 +1,7 @@
 defmodule Mix.Tasks.ConsumerTemplate do
   def template(path: path, prefix: prefix) do
-    [folder, name] = String.split(path, "/")
+    {folders, [name]} = String.split(path, "/") |> Enum.split(-1)
+    folder = Enum.join(folders, "/")
 
     event =
       File.read!("test/fixtures/domain-events/#{folder}/#{name}/default.json")
