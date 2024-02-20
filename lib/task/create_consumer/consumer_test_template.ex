@@ -1,6 +1,7 @@
 defmodule Mix.Tasks.ConsumerTestTemplate do
   def template(path: path) do
-    [folder, name] = String.split(path, "/")
+    {folders, [name]} = String.split(path, "/") |> Enum.split(-1)
+    folder = Enum.join(folders, "/")
 
     sub_module_name =
       name |> String.split("_") |> Enum.map(fn x -> String.capitalize(x) end) |> Enum.join()

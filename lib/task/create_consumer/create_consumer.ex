@@ -51,7 +51,9 @@ defmodule Mix.Tasks.CreateConsumer do
   end
 
   defp create_event_consumer_test_file(%{"--p" => path}) do
-    [folder, name] = String.split(path, "/")
+    {folders, [name]} = String.split(path, "/") |> Enum.split(-1)
+    folder = Enum.join(folders, "/")
+    
     content = Mix.Tasks.ConsumerTestTemplate.template(path: path)
 
     File.write(
