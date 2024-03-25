@@ -15,7 +15,10 @@ defmodule Mix.TasksHelper.CreateEventPublisherTestTemplate do
 
     """
     defmodule #{prefix}.#{event_name}EventPublisherTest do
-      use Support.DataCase, async: false
+      use Support.ProcessCase,
+        async: false,
+        process: #{prefix}.#{event_name}EventPublisher
+
 
       @subscription_key "publish_#{event_variable_name}_event"
       @publisher_options routing_key: "sna-backend.---------------------------"
